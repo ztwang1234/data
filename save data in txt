@@ -1,0 +1,22 @@
+import numpy as np
+#import matplotlib.pyplot as plt
+from datetime import datetime
+S = np.load('C:/WinPython/notebooks/S.npy')
+freq = np.load('C:/WinPython/notebooks/freq.npy')
+power = np.load('C:/WinPython/notebooks/power.npy')
+
+#write in txt
+def txt_save(data, i):
+    data=data.tolist()
+    file = open(datetime.now().date().strftime('%Y%m%d')+'.txt', 'a')
+    file.write(i+'\n')
+    for i in range(len(data)):    
+        s = str(data[i]).replace('[','').replace(']','') 
+        s = s.replace("'",'').replace(',','')+'\n'    
+        file.write(s)
+    file.close()        
+    print("保存文件成功") 
+
+txt_save(S,'S')
+txt_save(freq,'freq')
+txt_save(power,'power')
